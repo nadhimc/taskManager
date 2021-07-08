@@ -8,7 +8,9 @@
  * @format
  */
 
- import React from 'react';
+ import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React, {useState} from 'react';
  import {
    SafeAreaView,
    ScrollView,
@@ -57,15 +59,42 @@
    );
  };
 
+ const Splash = ()=>{
+
+   return(
+     <View style={{flex: 1, justifyContent:'center',alignItems:'center'}}>
+       <Text>Splash</Text>
+     </View>
+   )
+ }
+
  const App = () => {
+
+  const [splash, setSplash] = useState(true)
+
    const isDarkMode = useColorScheme() === 'dark';
 
    const backgroundStyle = {
      backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
    };
 
+   setTimeout(()=>{
+     setSplash(false)
+   },3000)
+
+   const Stack = createStackNavigator();
+   
+   if(splash){
+     return (
+       <Splash />
+     )
+   }
    return(
-     <Utama />
+     <NavigationContainer>
+      <Stack.Navigator headerMode="none" initialRouteName="Dashboard">
+        <Stack.Screen name="Dashboard" component={Utama} />
+      </Stack.Navigator>
+     </NavigationContainer>
    )
 
   //  return (

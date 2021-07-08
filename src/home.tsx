@@ -1,31 +1,29 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 import { View, Text } from "react-native"
 import Login from "./Login";
-import Register from "./Register";
+// import Register from "./Register";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import TabContent from "./Navigator/tabContent";
+import Categories from "./Pages/Categories";
+import Task from "./Pages/Task";
+import Calendar from "./Pages/Calendar";
+import Profile from "./Pages/Profile";
 
-const Stack = createStackNavigator();
 
-const Home = () => {
-    console.log("home")
-    return(
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home</Text>
-        </View>
-    )
-}
+const Tab = createBottomTabNavigator();
+
+const isLogin = false
 
 const Utama = () => {
     console.log("Utama")
     return(
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Register" component={Register} />
-            </Stack.Navigator>
-        </NavigationContainer>
+            <Tab.Navigator tabBar={props => <TabContent {...props} />} initialRouteName="Home">
+                <Tab.Screen name="Categories" component={Categories} />
+                <Tab.Screen name="Tasks" component={Task} />
+                <Tab.Screen name="Calendar" component={Calendar} />
+                <Tab.Screen name="Profile" component={Profile} />
+            </Tab.Navigator>
     )
 }
 
