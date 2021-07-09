@@ -1,7 +1,10 @@
 import React from "react"
+import { useState } from "react"
 import { View, Text, StyleSheet, TextInput, FlatList, TouchableOpacity } from "react-native"
 
 const AddCategory = ()=>{
+
+    const [colorPick, setColorPick] = useState('1')
 
     const colors=[
         {
@@ -32,7 +35,12 @@ const AddCategory = ()=>{
 
     const ColorRender = (item:any)=>{
         return(
-            <View style={{...styles.colorpick, backgroundColor:item.color}} />
+            <TouchableOpacity onPress={()=>{setColorPick(item.id)}} style={{...styles.colorpick, backgroundColor:item.color}}>
+                {colorPick==item.id?
+                <Text>V</Text>
+                :<Text></Text>
+                }
+            </TouchableOpacity>
         )
     }
 
@@ -73,7 +81,9 @@ const styles = StyleSheet.create({
     colorpick:{
         width: 42,
         height: 42,
-        borderRadius: 50
+        borderRadius: 50,
+        justifyContent:'center',
+        alignItems:'center'
     },
     separator:{
         width: 20,

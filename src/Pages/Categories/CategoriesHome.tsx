@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, TouchableOpacity, View, Text, FlatList } from "react-native"
+import { StyleSheet, TouchableOpacity, View, Text, FlatList, Image } from "react-native"
 
 
 const CategoriesHome = ({navigation}:any)=>{
@@ -59,6 +59,9 @@ const CategoriesHome = ({navigation}:any)=>{
     return(
         <View style={{paddingTop: 30,flex:1, alignItems:'center', backgroundColor:'#181a20'}}>
             <FlatList ItemSeparatorComponent={()=><View style={styles.separator} />} columnWrapperStyle={{justifyContent:'space-between'}} numColumns={2} horizontal={false} data={[...categories,...additem]} renderItem={categoriesRender} keyExtractor={item=>item.id} />
+            <TouchableOpacity onPress={()=>{navigation.navigate('AddCategory')}} style={{position:"absolute",right:20, bottom: 20}}>
+                <Image source={require('../../img/icon/add.png')} />
+            </TouchableOpacity>
         </View>
     )
 }
