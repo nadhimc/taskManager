@@ -35,7 +35,7 @@ const AddCategory = ()=>{
 
     const ColorRender = (item:any)=>{
         return(
-            <TouchableOpacity onPress={()=>{setColorPick(item.id)}} style={{...styles.colorpick, backgroundColor:item.color}}>
+            <TouchableOpacity key={item.id} onPress={()=>{setColorPick(item.id)}} style={{...styles.colorpick, backgroundColor:item.color}}>
                 {colorPick==item.id?
                 <Text>V</Text>
                 :<Text></Text>
